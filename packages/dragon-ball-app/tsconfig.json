@@ -7,7 +7,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "abc-styles": ["../abc-styles/dist/index"]
+      "abc-styles": ["../abc-styles/dist/index", "public/images/images.d.ts"]
     }
   }
 }

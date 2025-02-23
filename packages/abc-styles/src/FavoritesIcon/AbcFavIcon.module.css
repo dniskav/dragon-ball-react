@@ -1,0 +1,20 @@
+:root {
+  --favorite-color: #ec1d24;
+  --favorite-hover-color: #ffffff;
+}
+
+.heartIcon {
+  color: var(--favorite-color);
+  transition: color 0.3s ease-in-out;
+  height: 18px;
+  display: flex;
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* 🔥 Cuando la Card está en hover, el corazón se vuelve blanco */
+.isHovered {
+  color: var(--favorite-hover-color);
+}

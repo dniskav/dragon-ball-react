@@ -1,0 +1,67 @@
+:root {
+  /* Tamaños en rem */
+  --card-width: 236px;
+  --card-height: 306px;
+  --label-height: 78px;
+  
+  --animation-speed: 0.3s;
+  --line-height-default: 8px;
+  
+  /* Colores en HEX */
+  --label-bg: #000000; /* Negro */
+  --label-text-color: #ffffff; /* Blanco */
+  --line-color: #ec1d24; /* Rojo definido */
+  
+  /* Clip-path para el corte en 45° en la esquina inferior derecha */
+  --clip-card: polygon(0 0, 100% 0, 100% 93%, 93% 100%, 0 100%);
+}
+
+.card {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  overflow: hidden;
+  clip-path: var(--clip-card);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardLabel {
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--label-height);
+  align-items: center;
+  background: var(--label-bg);
+  color: var(--label-text-color);
+  text-align: center;
+  line-height: var(--label-height);
+  font-weight: bold;
+  z-index: 2;
+  display: flex;
+  padding: 0 1rem;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.cardLabel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--line-height-default);
+  background: var(--line-color);
+  transition: height var(--animation-speed) ease-in-out;
+  z-index: -1;
+}
+
+.card:hover .cardLabel::before {
+  height: 100%;
+}
