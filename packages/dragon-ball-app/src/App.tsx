@@ -1,19 +1,25 @@
 import { useState } from 'react'
 import './App.css'
 import { AbcButton, AbcCard, AbcText } from 'abc-styles';
+import { SearchBox } from './ui';
 
 function App() {
-  const [count, setCount] = useState(0)
   const [favorite, setFavorite] = useState(false)
   const [nombre, setNombre] = useState("")
+  // const [searchResults, setSearchResults] = useState<undefined[]>([])
+
+  const searchValue = (term: string): undefined[] => {
+    //TODO: search value on the database
+    const result = new Array(Math.floor(Math.random() * 100) + 1).fill(term)
+    return result
+  }
+
 
   return (
     <>
-        <AbcText label="Nombre" id="nombreId" controlled onChange={(e) => setNombre(e)} />
+        <SearchBox doSearch={searchValue} />
 
-        <AbcButton onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </AbcButton>
+        <AbcText label="Nombre" id="nombreId" onChange={(e) => setNombre(e)} />
 
         <AbcButton onClick={() => setFavorite(f => !f)}>
           fav {favorite}
