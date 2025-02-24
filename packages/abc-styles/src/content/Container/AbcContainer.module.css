@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+}
+
+.col {
+  flex-flow: column;
+}
+
+.row {
+  flex-flow: row;
+}
+
+.primary {
+  background-color: var(--container-bg-primary);
+}
+
+.secondary {
+  background-color: var(--container-bg-secondary);
+}
+
+.header {
+  height: 108px;
+}
