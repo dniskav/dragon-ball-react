@@ -1,0 +1,44 @@
+:root {
+  --text-color: #000000;
+  --label-text-color: #AAAAAA;
+  --focus-color: inset 0px -5px 5px -5px rgba(236, 29, 36, 0.5);
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  position: relative;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.searchContainer:focus-within {
+  box-shadow: var(--focus-color);
+  outline: none;
+}
+
+.searchInput {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 0.5rem;
+}
+
+/* 🔹 Ajuste de placeholder */
+.searchInput::placeholder {
+  color: #aaaaaa;
+}
+
+/* 🔍 Estilo de la lupa */
+.searchIcon {
+  width: 18px;
+  height: 18px;
+  fill: #aaaaaa;
+  margin-right: 0.5rem;
+  transition: fill 0.3s ease-in-out;
+}

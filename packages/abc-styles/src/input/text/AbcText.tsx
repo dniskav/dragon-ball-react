@@ -1,48 +1,42 @@
-import { useState } from 'react';
+import { useState, forwardRef, ReactNode } from 'react';
 import styles from './AbcText.module.css';
 
 interface Props {
   label: string;
   value?: string;
   id: string;
-  controlled?: boolean;
   defaultValue?: string;
-  ref?: React.Ref<HTMLInputElement>;
-  onChange?: (newValue: string) => void;
+  icon?: ReactNode;
+  onChange: (newValue: string) => void;
 }
 
-const AbcText: React.FC<Props> = ({
-  label,
-  value,
-  id,
-  ref,
-  defaultValue,
-  controlled = false,
-  onChange,
-}) => {
-  const [internalVale, setInternalValue] = useState(value);
+const AbcText = forwardRef<HTMLInputElement, Props>(
+  ({ label, value, id, defaultValue, onChange, icon }, ref) => {
+    const [internalValue, setInternalValue] = useState(
+      value ?? defaultValue ?? '',
+    );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInternalValue(e.target.value);
-    if (controlled) {
-      onChange && onChange(e.target.value);
-    }
-  };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInternalValue(e.target.value);
+      onChange(e.target.value);
+    };
 
-  return (
-    <>
-      <input
-        className={styles.text}
-        defaultValue={defaultValue}
-        type="text"
-        id={id}
-        value={value}
-        placeholder={label}
-        onChange={handleChange}
-        ref={ref}
-      />
-    </>
-  );
-};
+    return (
+      <div className={styles.textContainer}>
+        {icon}
+
+        <input
+          ref={ref || undefined}
+          className={styles.text}
+          type="text"
+          id={id}
+          value={internalValue}
+          placeholder={label}
+          onChange={handleChange}
+        />
+      </div>
+    );
+  },
+);
 
 export default AbcText;
