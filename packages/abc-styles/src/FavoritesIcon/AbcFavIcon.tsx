@@ -17,8 +17,8 @@ const AbcFavIcon: FC<Props> = ({ isFavorite = false, isHovered = false }) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M6.71448 2.37318L3.71448 0.552368L0.714478 2.37318V6.27491L6.71448 11.3905L12.7145 6.27491V2.37318L9.71448 0.552368L6.71448 2.37318Z"
             fill="currentColor"
           />
