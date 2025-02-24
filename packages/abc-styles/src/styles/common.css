@@ -24,6 +24,8 @@
   --label-bg: var(--tertiary-color);
   --label-text-color: var(--secondary-color);
   --line-color: var(--primary-color);
+  --container-bg-primary: var(--tertiary-color);
+  --container-bg-secondary: var(--secondary-color);
   
   /* Clip-path para el corte en 45° en la esquina inferior derecha */
   --clip-card: polygon(0 0, 100% 0, 100% 93%, 93% 100%, 0 100%);
