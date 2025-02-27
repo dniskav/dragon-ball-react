@@ -1,12 +1,12 @@
-import { ReactNode, useState } from 'react';
-import styles from './AbcCard.module.css';
-import AbcFavIcon from '../FavoritesIcon/AbcFavIcon';
+import { ReactNode, useState } from 'react'
+import styles from './AbcCard.module.css'
+import AbcFavIcon from '../FavoritesIcon/AbcFavIcon'
 
 interface AbcCardProps {
-  label: string;
-  isFavorite?: boolean;
-  children?: ReactNode;
-  onClick?: () => void;
+  label: string
+  isFavorite?: boolean
+  children?: ReactNode
+  onClick?: () => void
 }
 
 const AbcCard: React.FC<AbcCardProps> = ({
@@ -15,21 +15,22 @@ const AbcCard: React.FC<AbcCardProps> = ({
   onClick,
   isFavorite = false,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
     <section
       className={styles.card}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}>
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {children}
       <div className={styles.cardLabel}>
         {label}
         <AbcFavIcon isFavorite={isFavorite} isHovered={isHovered} />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default AbcCard;
+export default AbcCard
