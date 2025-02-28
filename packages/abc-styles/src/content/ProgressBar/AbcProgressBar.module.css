@@ -4,4 +4,5 @@
   background: transparent;
   border: 3px solid var(--primary-color);
   transition: width 0.3s ease-in-out;
+  box-sizing: border-box;
 }

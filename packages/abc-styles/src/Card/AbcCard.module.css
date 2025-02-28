@@ -5,12 +5,16 @@
   height: var(--card-height);
   overflow: hidden;
   clip-path: var(--clip-card);
+  -webkit-clip-path: var(--clip-card);
+  box-sizing: border-box;
 }
 
 .card img {
   display: block;
   margin: 0 auto;
   height: 74%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .cardLabel {
@@ -43,8 +47,15 @@
   background: var(--line-color);
   transition: height var(--animation-speed) ease-in-out;
   z-index: -1;
+  will-change: height;
 }
 
 .card:hover .cardLabel::before {
   height: 100%;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 192px;
+  }
 }

@@ -16,17 +16,17 @@
 
   --favorite-color: var(--primary-color);
   --favorite-hover-color: var(--secondary-color);
-  
+
   --animation-speed: 0.3s;
   --line-height-default: 8px;
-  
+
   /* Colores en HEX */
   --label-bg: var(--tertiary-color);
   --label-text-color: var(--secondary-color);
   --line-color: var(--primary-color);
   --container-bg-primary: var(--tertiary-color);
   --container-bg-secondary: var(--secondary-color);
-  
+
   /* Clip-path para el corte en 45° en la esquina inferior derecha */
   --clip-card: polygon(0 0, 100% 0, 100% 93%, 93% 100%, 0 100%);
 }
