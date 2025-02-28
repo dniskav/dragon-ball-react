@@ -3,6 +3,7 @@
   transition: color 0.3s ease-in-out;
   height: 18px;
   cursor: pointer;
+  width: 48px;
   display: flex;
   svg {
     width: 32px;

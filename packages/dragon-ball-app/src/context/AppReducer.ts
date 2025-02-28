@@ -1,8 +1,11 @@
-import { CharacterListItem } from '../modules/Character/domain/CharacterTypes'
+import {
+  CharacterDetail,
+  CharacterListItem,
+} from '../modules/Character/domain/CharacterTypes'
 
 export interface AppState {
   characters: CharacterListItem[]
-  favoriteCharacters: CharacterListItem[]
+  favoriteCharacters: CharacterListItem[] | CharacterDetail[]
   filterTerm: string
   currentList: CharacterListItem[]
   searchQuery: string

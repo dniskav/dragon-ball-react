@@ -1,10 +1,10 @@
 import { AbcContainer, AbcProgressBar, AbcCard } from 'abc-styles'
-import { SearchBox } from '..'
+import { SearchBox } from '../..'
 import { useEffect } from 'react'
-import { useAppContext } from '../../context/AppContext'
-import { CharacterService } from '../../modules/Character/application/CharacterService'
-import { CharacterListItem } from '../../modules/Character/domain/CharacterTypes'
-import { useHttpInterceptor } from '../../infraestructure/httpInterceptor'
+import { useAppContext } from '../../../context/AppContext'
+import { CharacterService } from '../../../modules/Character/application/CharacterService'
+import { CharacterListItem } from '../../../modules/Character/domain/CharacterTypes'
+import { useHttpInterceptor } from '../../../infraestructure/httpInterceptor'
 import { useNavigate } from 'react-router-dom'
 
 export const CharacterList = () => {
@@ -18,21 +18,7 @@ export const CharacterList = () => {
       dispatch({ type: 'SET_CHARACTERS', payload: data })
       dispatch({ type: 'SET_CURRENT_LIST' })
     })
-  }, [])
-
-  useEffect(() => {
-    const addFav = async () => {
-      const one = await CharacterService.getById(1)
-      const five = await CharacterService.getById(5)
-
-      setTimeout(() => {
-        dispatch({ type: 'ADD_FAVORITE', payload: one })
-        dispatch({ type: 'ADD_FAVORITE', payload: five })
-      }, 2000)
-    }
-
-    addFav()
-  }, [])
+  }, [dispatch])
 
   const filterCharacters = (term: string) => {
     dispatch({ type: 'SET_FILTER_TERM', payload: term })

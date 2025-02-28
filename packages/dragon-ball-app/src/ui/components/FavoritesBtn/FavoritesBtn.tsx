@@ -3,7 +3,7 @@ import styles from './FavoritesBtn.module.css'
 
 interface Props {
   onClick: () => void
-  total: number
+  total?: number
 }
 
 const FavoritesBtn: FC<Props> = ({ onClick, total = 0 }) => {
@@ -23,7 +23,7 @@ const FavoritesBtn: FC<Props> = ({ onClick, total = 0 }) => {
           fill="#EC1D24"
         />
       </svg>
-      <span className={styles.favoritesBtnText}>{total}</span>
+      {total > 0 && <span className={styles.favoritesBtnText}>{total}</span>}
     </div>
   )
 }
