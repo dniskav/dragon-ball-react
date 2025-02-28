@@ -8,6 +8,8 @@
     "baseUrl": "./",
     "paths": {
       "abc-styles": ["../abc-styles/dist/index", "public/images/images.d.ts"]
-    }
+    },
+    "module": "commonjs",
+    "esModuleInterop": true
   }
 }
