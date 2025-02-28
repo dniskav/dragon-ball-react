@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useAppContext } from '../../../context/AppContext'
 import { CharacterService } from '../../../modules/Character/application/CharacterService'
 import { CharacterListItem } from '../../../modules/Character/domain/CharacterTypes'
-import { useHttpInterceptor } from '../../../infraestructure/httpInterceptor'
+import { useHttpInterceptor } from '../../../infraestructure/httpInterceptor/httpInterceptor'
 import { useNavigate } from 'react-router-dom'
 
 export const CharacterList = () => {
