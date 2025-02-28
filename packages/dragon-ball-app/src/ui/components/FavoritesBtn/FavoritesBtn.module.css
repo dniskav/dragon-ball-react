@@ -13,3 +13,8 @@
 .favoritesBtn:hover {
   color: var(--favorite-hover-color);
 }
+
+.favoritesBtnText {
+  margin-left: 8px;
+  color: var(--secondary-color);
+}

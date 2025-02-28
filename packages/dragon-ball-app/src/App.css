@@ -43,3 +43,11 @@ body {
 .logo {
   height: 120px;
 }
+
+.AbcGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(auto, 236px));
+  gap: 1rem;
+  width: 100%;
+  margin: 0 auto;
+}

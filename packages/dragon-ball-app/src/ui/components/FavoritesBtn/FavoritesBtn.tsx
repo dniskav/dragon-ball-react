@@ -1,11 +1,12 @@
-import { FC } from 'react';
-import styles from './FavoritesBtn.module.css';
+import { FC } from 'react'
+import styles from './FavoritesBtn.module.css'
 
 interface Props {
-  onClick: () => void;
+  onClick: () => void
+  total: number
 }
 
-const FavoritesBtn: FC<Props> = ({ onClick }) => {
+const FavoritesBtn: FC<Props> = ({ onClick, total = 0 }) => {
   return (
     <div className={styles.favoritesBtn} onClick={onClick}>
       <svg
@@ -13,7 +14,8 @@ const FavoritesBtn: FC<Props> = ({ onClick }) => {
         height="12"
         viewBox="0 0 13 12"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -21,8 +23,9 @@ const FavoritesBtn: FC<Props> = ({ onClick }) => {
           fill="#EC1D24"
         />
       </svg>
+      <span className={styles.favoritesBtnText}>{total}</span>
     </div>
-  );
-};
+  )
+}
 
-export default FavoritesBtn;
+export default FavoritesBtn
