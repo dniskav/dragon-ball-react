@@ -73,17 +73,19 @@ const CharacterDetails = () => {
       <AbcContainer col secondary>
         <div className={`${styles.transformations} ${styles.heroPadding}`}>
           <h2>Transformaciones</h2>
-          <div className={styles.slider}>
-            {character?.transformations.map((t) => (
-              <div key={t.id} className={styles.transformation}>
-                <div className={styles.transformationImageContainer}>
-                  <img className={styles.transformationImage} src={t.image} />
-                </div>
+          {character?.transformations.length > 0 && (
+            <div className={styles.slider}>
+              {character?.transformations.map((t) => (
+                <div key={t.id} className={styles.transformation}>
+                  <div className={styles.transformationImageContainer}>
+                    <img className={styles.transformationImage} src={t.image} />
+                  </div>
 
-                <span>{t.name}</span>
-              </div>
-            ))}
-          </div>
+                  <span>{t.name}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </AbcContainer>
     </>

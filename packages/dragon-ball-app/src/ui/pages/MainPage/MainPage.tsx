@@ -4,6 +4,7 @@ import FavoritesBtn from '../../components/FavoritesBtn/FavoritesBtn'
 import { useAppContext } from '../../../context/AppContext'
 import { useNavigate } from 'react-router-dom'
 import styles from './MainPage.module.css'
+import logo from '../../../../public/images/logo.png'
 
 interface Props {
   children: ReactNode
@@ -24,7 +25,7 @@ const MainPage: FC<Props> = ({ children }) => {
         <div className="header-content">
           <img
             className="logo"
-            src="images/logo.png"
+            src={logo}
             alt="logo"
             onClick={() => navigate('/')}
           />
