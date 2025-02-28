@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  flex: 1;
+  box-sizing: border-box;
 }
 
 .col {
