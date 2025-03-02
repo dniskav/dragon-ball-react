@@ -8,7 +8,11 @@ interface Props {
 
 const AbcFavIcon: FC<Props> = ({ isFavorite = false, isHovered = false }) => {
   return (
-    <div className={`${styles.heartIcon} ${isHovered ? styles.isHovered : ''}`}>
+    <div
+      className={`${styles.heartIcon} ${isHovered ? styles.isHovered : ''}`}
+      role="img"
+      aria-label="favorite"
+    >
       {isFavorite && (
         <svg
           width="13"

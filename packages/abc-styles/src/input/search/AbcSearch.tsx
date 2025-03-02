@@ -56,7 +56,7 @@ const AbcSearch: React.FC<Props> = ({
   }
 
   return (
-    <div className={styles.searchContainer}>
+    <div className={styles.searchContainer} role="search">
       <AbcText
         id={id}
         label={placeholder}

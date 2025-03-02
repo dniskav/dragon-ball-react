@@ -23,6 +23,8 @@ const AbcCard: React.FC<AbcCardProps> = ({
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      role="region"
+      aria-label={label}
     >
       {children}
       <div className={styles.cardLabel}>
