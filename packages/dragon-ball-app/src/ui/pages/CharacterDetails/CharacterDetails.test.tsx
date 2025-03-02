@@ -93,25 +93,24 @@ describe('<CharacterDetails />', () => {
   })
 
   it('debería eliminar un personaje de favoritos si ya está en la lista', async () => {
-    const stateWithFavorite = {
-      ...mockState,
-      favoriteCharacters: [{ ...baseCharacter, id: 1, name: 'Goku' }],
-    }
-
     render(
-      <AppContext.Provider
-        value={{ state: stateWithFavorite, dispatch: mockDispatch }}
-      >
+      <AppContext.Provider value={{ state: mockState, dispatch: mockDispatch }}>
         <MemoryRouter>
           <CharacterDetails />
         </MemoryRouter>
       </AppContext.Provider>
     )
 
+    await waitFor(() => {
+      expect(screen.getByAltText('heart')).toBeInTheDocument()
+    })
+
     await waitFor(() => expect(CharacterService.getById).toHaveBeenCalled())
 
-    const favButton = screen.getByAltText('heart')
+    const favButton = screen.getByAltText('heart') // Asegura que encuentra el botón correcto
     fireEvent.click(favButton)
+
+    console.log(mockDispatch.mock.calls) // Muestra todas las llamadas para debug
 
     expect(mockDispatch).toHaveBeenCalledWith({
       type: 'REMOVE_FAVORITE',
@@ -127,6 +126,12 @@ describe('<CharacterDetails />', () => {
         </MemoryRouter>
       </AppContext.Provider>
     )
+
+    await waitFor(() => {
+      expect(
+        screen.getByText((content) => content.includes('Super Saiyan'))
+      ).toBeInTheDocument()
+    })
 
     await waitFor(() => expect(CharacterService.getById).toHaveBeenCalled())
 

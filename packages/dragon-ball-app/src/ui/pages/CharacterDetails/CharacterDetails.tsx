@@ -61,6 +61,7 @@ const CharacterDetails = () => {
                 {character ? character?.name : 'Cargando...'}
               </h1>
               <div
+                role="button"
                 className={styles.favoriteBtn}
                 onClick={() => addToFavorites(character)}
               >
@@ -77,7 +78,7 @@ const CharacterDetails = () => {
 
       <AbcContainer col secondary>
         <div className={`${styles.transformations} ${styles.heroPadding}`}>
-          <h2>Transformaciones</h2>
+          <h2 role="heading">Transformaciones</h2>
           {character && character?.transformations.length > 0 && (
             <div className={styles.slider}>
               {character?.transformations.map((t) => (
