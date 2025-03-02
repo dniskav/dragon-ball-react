@@ -12,6 +12,7 @@ interface Props {
 
 const icon = () => (
   <svg
+    role="img"
     className={styles.searchIcon}
     width="13"
     height="13"
