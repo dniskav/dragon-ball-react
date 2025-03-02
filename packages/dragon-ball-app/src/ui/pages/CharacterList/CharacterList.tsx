@@ -6,19 +6,24 @@ import { CharacterService } from '../../../modules/Character/application/Charact
 import { CharacterListItem } from '../../../modules/Character/domain/CharacterTypes'
 import { useHttpInterceptor } from '../../../infraestructure/httpInterceptor/httpInterceptor'
 import { useNavigate } from 'react-router-dom'
+import { useCachedFetch } from '../../../hooks/useCachedFetch'
 
 export const CharacterList = () => {
   const { state, dispatch } = useAppContext()
   const [progress] = useHttpInterceptor()
+  const { data: characters } = useCachedFetch<CharacterListItem[]>(
+    'characters',
+    CharacterService.getAll,
+    60
+  )
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    CharacterService.getAll().then((data: CharacterListItem[]) => {
-      dispatch({ type: 'SET_CHARACTERS', payload: data })
-      dispatch({ type: 'SET_CURRENT_LIST' })
-    })
-  }, [dispatch])
+    if (!characters) return
+    dispatch({ type: 'SET_CHARACTERS', payload: characters })
+    dispatch({ type: 'SET_CURRENT_LIST' })
+  }, [characters, dispatch])
 
   const filterCharacters = (term: string) => {
     dispatch({ type: 'SET_FILTER_TERM', payload: term })
