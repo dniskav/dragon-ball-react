@@ -19,7 +19,7 @@ const AbcCard: React.FC<AbcCardProps> = ({
 
   return (
     <section
-      className={styles.card}
+      className={`${styles.card} ${isHovered ? styles.isHovered : ''}`}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
