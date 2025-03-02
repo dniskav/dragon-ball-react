@@ -1,22 +1,12 @@
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  within,
-} from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { MemoryRouter } from 'react-router-dom'
 import { CharacterList } from './CharacterList'
 import { AppContext } from '../../../context/AppContext'
 import { CharacterService } from '../../../modules/Character/application/CharacterService'
 import { CharacterListItem } from '../../../modules/Character/domain/CharacterTypes'
-import { TextEncoder, TextDecoder } from 'util'
 import { baseCharacter } from '../../../../tests/characterMocks'
 import { mockState } from '../../../../tests/stateMock'
-
-global.TextEncoder = TextEncoder
-global.TextDecoder = TextDecoder
 
 jest.mock('../../../modules/Character/application/CharacterService', () => ({
   CharacterService: {
@@ -29,18 +19,20 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }))
 
-describe('CharacterList', () => {
+describe('<CharacterList>', () => {
   const mockDispatch = jest.fn()
   const mockNavigate = jest.fn()
 
   beforeEach(() => {
     ;(CharacterService.getAll as jest.Mock).mockResolvedValue([
       {
+        ...baseCharacter,
         id: 1,
         name: 'Goku',
         image: 'goku.jpg',
       },
       {
+        ...baseCharacter,
         id: 2,
         name: 'Vegeta',
         image: 'vegeta.jpg',
@@ -54,7 +46,7 @@ describe('CharacterList', () => {
     render(
       <AppContext.Provider
         value={{
-          state: { currentList: [], favoriteCharacters: [] },
+          state: { ...mockState },
           dispatch: mockDispatch,
         }}
       >
@@ -71,7 +63,7 @@ describe('CharacterList', () => {
     render(
       <AppContext.Provider
         value={{
-          state: { currentList: [], favoriteCharacters: [] },
+          state: { ...mockState },
           dispatch: mockDispatch,
         }}
       >
@@ -93,13 +85,7 @@ describe('CharacterList', () => {
     render(
       <AppContext.Provider
         value={{
-          state: {
-            currentList: [
-              { ...baseCharacter, id: 1, name: 'Goku', image: 'goku.jpg' },
-              { ...baseCharacter, id: 2, name: 'Vegeta', image: 'vegeta.jpg' },
-            ],
-            favoriteCharacters: [],
-          },
+          state: { ...mockState },
           dispatch: mockDispatch,
         }}
       >

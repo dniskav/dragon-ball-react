@@ -33,10 +33,13 @@ const CharacterDetails = () => {
   }, [checkFav, id])
 
   useEffect(() => {
-    checkFav(character)
+    if (character) {
+      checkFav(character)
+    }
   }, [character, checkFav])
 
-  const addToFavorites = (character: CharacterDetail) => {
+  const addToFavorites = (character: CharacterDetail | undefined) => {
+    if (!character) return
     if (state.favoriteCharacters.find((c) => c.id === character.id)) {
       dispatch({ type: 'REMOVE_FAVORITE', payload: character.id })
       return
@@ -54,7 +57,9 @@ const CharacterDetails = () => {
 
           <div className={styles.characterDetails}>
             <div className={styles.characterDetailsTitle}>
-              <h1>{character?.name}</h1>
+              <h1 role="heading">
+                {character ? character?.name : 'Cargando...'}
+              </h1>
               <div
                 className={styles.favoriteBtn}
                 onClick={() => addToFavorites(character)}
@@ -73,7 +78,7 @@ const CharacterDetails = () => {
       <AbcContainer col secondary>
         <div className={`${styles.transformations} ${styles.heroPadding}`}>
           <h2>Transformaciones</h2>
-          {character?.transformations.length > 0 && (
+          {character && character?.transformations.length > 0 && (
             <div className={styles.slider}>
               {character?.transformations.map((t) => (
                 <div key={t.id} className={styles.transformation}>

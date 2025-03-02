@@ -7,7 +7,7 @@ import styles from './MainPage.module.css'
 import logo from '../../../assets/logo.png'
 
 interface Props {
-  children: ReactNode
+  children?: ReactNode
 }
 
 const MainPage: FC<Props> = ({ children }) => {

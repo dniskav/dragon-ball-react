@@ -33,7 +33,6 @@ export const CharacterList = () => {
 
   const showDetails = (char: CharacterListItem) => {
     navigate(`/character/${char.id}`)
-    console.log(char)
   }
 
   return (

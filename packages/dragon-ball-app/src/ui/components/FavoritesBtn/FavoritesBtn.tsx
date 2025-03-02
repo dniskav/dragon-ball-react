@@ -8,8 +8,9 @@ interface Props {
 
 const FavoritesBtn: FC<Props> = ({ onClick, total = 0 }) => {
   return (
-    <div className={styles.favoritesBtn} onClick={onClick}>
+    <div className={styles.favoritesBtn} onClick={onClick} role="button">
       <svg
+        role="img"
         width="13"
         height="12"
         viewBox="0 0 13 12"
