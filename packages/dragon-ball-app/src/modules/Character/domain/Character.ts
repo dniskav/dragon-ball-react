@@ -1,5 +1,5 @@
-import { Ki, Race, Gender, ImageURL } from "./CharacterVO";
-import { TransformationVO } from "./TransformationVO";
+import { Ki, Race, Gender, ImageURL } from "./CharacterVO"
+import { TransformationVO } from "./TransformationVO"
 
 export interface Planet {
   id: number;

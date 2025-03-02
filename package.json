@@ -7,6 +7,11 @@
   ],
   "scripts": {
     "postinstall": "yarn workspace abc-styles build"
+  },
+  "dependencies": {
+    "@swc/core": "^1.11.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
   }
-
 }

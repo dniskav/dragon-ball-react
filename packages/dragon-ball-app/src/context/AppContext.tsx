@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useReducer,
+  ReactNode,
+  Dispatch,
+} from 'react'
 import { appReducer, AppState, AppAction } from './AppReducer'
 
 const initialState: AppState = {
@@ -6,14 +12,13 @@ const initialState: AppState = {
   filterTerm: '',
   favoriteCharacters: [],
   currentList: [],
-  searchQuery: '',
   favoritesOnly: false,
 }
 
 export const AppContext = createContext<
   | {
       state: AppState
-      dispatch: React.Dispatch<AppAction>
+      dispatch: Dispatch<AppAction>
     }
   | undefined
 >(undefined)

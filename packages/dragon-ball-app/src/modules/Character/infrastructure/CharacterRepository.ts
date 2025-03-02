@@ -1,11 +1,11 @@
-import { fetchCharacters, fetchCharacterById } from "./CharacterAPI";
+import { fetchCharacters, fetchCharacterById } from "./CharacterAPI"
 
 export const CharacterRepository = {
   getAll: async () => {
-    return fetchCharacters();
+    return fetchCharacters()
   },
   getById: async (id: number) => {
-    return fetchCharacterById(id);
+    return fetchCharacterById(id)
   },
-};
+}
 

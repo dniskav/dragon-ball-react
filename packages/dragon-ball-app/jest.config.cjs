@@ -1,14 +1,12 @@
-/** @type {import('jest').Config} */
-process.env.NODE_OPTIONS = '--experimental-vm-modules'
-
 module.exports = {
   testEnvironment: 'jest-environment-jsdom',
+  transformIgnorePatterns: ['/node_modules/', '/dist/'],
   transform: {
-    '^.+\\.(t|j)sx?$': ['@swc/jest'], // Usa SWC para transformar TypeScript y JSX
+    '^.+\\.(t|j)sx?$': ['@swc/jest'],
   },
   moduleNameMapper: {
-    '\\.(css|less|sass|scss)$': 'identity-obj-proxy', // Maneja imports de estilos
-    '\\.svg$': '<rootDir>/jest-svg-transformer.js', // Si importas SVGs en los tests
+    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+    '\\.svg$': '<rootDir>/jest-svg-transformer.js',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 }

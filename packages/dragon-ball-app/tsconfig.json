@@ -3,13 +3,5 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ],
-  "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "abc-styles": ["../abc-styles/dist/index", "public/images/images.d.ts"]
-    },
-    "module": "commonjs",
-    "esModuleInterop": true
-  }
+  ]
 }

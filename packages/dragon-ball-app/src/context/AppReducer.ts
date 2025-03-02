@@ -8,7 +8,6 @@ export interface AppState {
   favoriteCharacters: CharacterListItem[] | CharacterDetail[]
   filterTerm: string
   currentList: CharacterListItem[]
-  searchQuery: string
   favoritesOnly: boolean
 }
 
@@ -65,7 +64,7 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
   }
 }
 
-const removeDuplicates = (
+export const removeDuplicates = (
   characters: CharacterListItem[]
 ): CharacterListItem[] => {
   const CharactersSet = new Set(characters.map((C) => JSON.stringify(C)))
