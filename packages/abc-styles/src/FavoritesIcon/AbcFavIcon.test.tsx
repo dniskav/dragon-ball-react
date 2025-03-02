@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import AbcFavIcon from './AbcFavIcon'
 
-describe('AbcFavIcon', () => {
+describe('<AbcFavIcon>', () => {
   it('debería renderizar el ícono de favorito cuando isFavorite es true', () => {
     render(<AbcFavIcon isFavorite={true} />)
 

@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import AbcText from './AbcText'
 
-describe('AbcText', () => {
+describe('<AbcText>', () => {
   it('debería renderizar el input con el label correcto', () => {
     render(<AbcText label="Nombre" id="nombre" onChange={() => {}} />)
 

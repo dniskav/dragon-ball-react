@@ -6,8 +6,9 @@ module.exports = {
     '^.+\\.(t|j)sx?$': 'ts-jest',
   },
   moduleNameMapper: {
-    '\\.(css|less|sass|scss)$': 'identity-obj-proxy', // Manejo de estilos
-    '\\.svg$': '<rootDir>/jest-svg-transformer.js', // Transformador para SVGs
+    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+    '\\.svg$': '<rootDir>/jest-svg-transformer.js',
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'], // 🟢 Aquí cargamos Jest-DOM correctamente
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  verbose: true,
 }

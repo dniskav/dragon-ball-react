@@ -1,16 +1,16 @@
-import style from './AbcContainer.module.css';
+import style from './AbcContainer.module.css'
 
 interface Props {
-  children: React.ReactNode;
-  row?: boolean;
-  col?: boolean;
-  primary?: boolean;
-  secondary?: boolean;
-  header?: boolean;
+  children?: React.ReactNode
+  row?: boolean
+  col?: boolean
+  primary?: boolean
+  secondary?: boolean
+  header?: boolean
 }
 
 const AbcContainer: React.FC<Props> = ({
-  children,
+  children = null,
   row = false,
   col = true,
   primary = true,
@@ -26,9 +26,9 @@ const AbcContainer: React.FC<Props> = ({
     header ? style.header : '',
   ]
     .filter(Boolean) // 🔥 Elimina elementos falsy (undefined, false, '')
-    .join(' '); // 🔥 Une en un solo string separado por espacios
+    .join(' ') // 🔥 Une en un solo string separado por espacios
 
-  return <div className={containerClass}>{children}</div>;
-};
+  return <div className={containerClass}>{children}</div>
+}
 
-export default AbcContainer;
+export default AbcContainer

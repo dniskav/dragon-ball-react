@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import AbcButton from './AbcButton'
 
-describe('Button component', () => {
+describe('<AbcButton>', () => {
   it('debería renderizar con el texto correcto', () => {
     render(<AbcButton label="Haz clic" onClick={() => {}} />)
 

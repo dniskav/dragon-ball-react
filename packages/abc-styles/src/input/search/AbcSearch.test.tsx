@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import AbcSearch from './AbcSearch'
 
-describe('AbcSearch', () => {
+describe('<AbcSearch>', () => {
   it('debería renderizar correctamente con el placeholder por defecto', () => {
     render(<AbcSearch id="search" onSearch={() => {}} />)
 

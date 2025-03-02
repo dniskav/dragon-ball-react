@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import AbcCard from './AbcCard'
 
-describe('AbcCard', () => {
+describe('<AbcCard />', () => {
   const mockOnClick = jest.fn()
 
   it('debería renderizar con el label', () => {
