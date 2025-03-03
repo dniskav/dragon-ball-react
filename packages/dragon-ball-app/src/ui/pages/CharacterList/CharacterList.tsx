@@ -11,7 +11,7 @@ import { useCachedFetch } from '../../../hooks/useCachedFetch'
 export const CharacterList = () => {
   const { state, dispatch } = useAppContext()
   const [progress] = useHttpInterceptor()
-  const { data: characters } = useCachedFetch<CharacterListItem[]>(
+  const { data: characters, fromCache } = useCachedFetch<CharacterListItem[]>(
     'characters',
     CharacterService.getAll,
     60
@@ -42,7 +42,7 @@ export const CharacterList = () => {
 
   return (
     <>
-      <AbcProgressBar progress={progress} />
+      <AbcProgressBar progress={fromCache ? 100 : progress} />
 
       <AbcContainer col secondary>
         <div className="contentBody">

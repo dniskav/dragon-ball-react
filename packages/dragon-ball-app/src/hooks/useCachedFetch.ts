@@ -1,61 +1,43 @@
 import { useState, useEffect } from 'react'
 
-interface CacheData<T> {
-  timestamp: number
-  data: T
-}
-
-const DEFAULT_EXPIRATION = 24 * 60 // 24 horas en minutos
-
 export const useCachedFetch = <T>(
   key: string,
   fetchFunction: () => Promise<T>,
-  expirationMinutes: number = DEFAULT_EXPIRATION
+  cacheTime = 1440
 ) => {
   const [data, setData] = useState<T | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
+  const [fromCache, setFromCache] = useState(false)
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true)
-        setError(null)
+    const cachedItem = localStorage.getItem(key)
 
-        const cached = localStorage.getItem(key)
-        if (cached) {
-          const parsedCache: CacheData<T> = JSON.parse(cached)
-          const now = Date.now()
-          const expirationTime =
-            parsedCache.timestamp + expirationMinutes * 60 * 1000
+    if (cachedItem) {
+      const { data, timestamp } = JSON.parse(cachedItem)
+      const now = new Date().getTime()
+      const cacheExpiration = cacheTime * 60 * 1000
 
-          if (now < expirationTime) {
-            setData(parsedCache.data)
-            setLoading(false)
-            return
-          }
-        }
-
-        const result = await fetchFunction()
-
-        localStorage.setItem(
-          key,
-          JSON.stringify({
-            timestamp: Date.now(),
-            data: result,
-          })
-        )
-
-        setData(result)
-      } catch (err) {
-        setError(err as Error)
-      } finally {
+      if (now - timestamp < cacheExpiration) {
+        setData(data)
         setLoading(false)
+        setFromCache(true)
+        return
       }
     }
 
-    fetchData()
-  }, [key, fetchFunction, expirationMinutes])
+    fetchFunction()
+      .then((response) => {
+        setData(response)
+        setFromCache(false)
+        localStorage.setItem(
+          key,
+          JSON.stringify({ data: response, timestamp: new Date().getTime() })
+        )
+      })
+      .catch(setError)
+      .finally(() => setLoading(false))
+  }, [key, fetchFunction, cacheTime])
 
-  return { data, loading, error }
+  return { data, loading, error, fromCache }
 }

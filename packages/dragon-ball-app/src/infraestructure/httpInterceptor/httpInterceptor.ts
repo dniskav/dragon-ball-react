@@ -16,9 +16,7 @@ export const useHttpInterceptor = () => {
     ): Promise<Response> => {
       setStatus('loading')
       setProgress(0)
-      console.warn('fetch', input, init)
 
-      // 🛑 Cancelar cualquier petición anterior antes de iniciar una nueva
       if (abortController.current) {
         abortController.current.abort()
       }
@@ -36,9 +34,11 @@ export const useHttpInterceptor = () => {
 
         const contentLength = response.headers.get('content-length')
 
-        // 🚨 Si no se puede calcular el progreso, devolver respuesta original
         if (!response.body || !contentLength || !window.ReadableStream) {
-          console.warn('⚠️ No se puede calcular el progreso.')
+          console.warn(
+            '⚠️ No se puede calcular el progreso. Retornando respuesta original.'
+          )
+          setProgress(100)
           setStatus('done')
           return response.clone()
         }
@@ -63,7 +63,7 @@ export const useHttpInterceptor = () => {
               if ((error as Error).name === 'AbortError') {
                 console.warn('⏹️ Fetch request aborted.')
               } else {
-                console.error('❌ Error reading stream:', error)
+                console.error('❌ Error leyendo el stream:', error)
                 setStatus('error')
               }
             }
@@ -82,14 +82,12 @@ export const useHttpInterceptor = () => {
           console.error('❌ Fetch error:', error)
           setStatus('error')
         }
+        setProgress(100)
         throw error
       }
     }
 
     return () => {
-      console.log(
-        '🧹 Cleaning up: restoring original fetch and aborting requests.'
-      )
       window.fetch = originalFetch
       abortController.current?.abort()
     }
