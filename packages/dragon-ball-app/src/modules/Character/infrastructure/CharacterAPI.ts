@@ -83,7 +83,7 @@ export const fetchCharacterById = async (
     }
 
     const data = await response.json()
-    console.log(`✅ Datos del personaje ${id}:`, data)
+
     return data
   } catch (error) {
     console.error(`❌ Error en fetchCharacterById (${id}):`, error)
