@@ -19,7 +19,7 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm ci --ignore-optional
+        run: yarn install --immutable --ignore-optional
 
       - name: Build Project
         run: |
