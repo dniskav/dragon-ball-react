@@ -2,6 +2,13 @@ const { execSync } = require('child_process')
 const fs = require('fs')
 
 console.log('🛠️ Detectando sistema operativo...')
+
+// Evitar ejecución en CI (GitHub Actions)
+if (process.env.CI) {
+  console.log('🚀 Skipping setup-platform.js in CI (GitHub Actions)')
+  process.exit(0)
+}
+
 const platform = process.platform
 const arch = process.arch
 
