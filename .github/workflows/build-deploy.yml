@@ -1,4 +1,4 @@
-name: Dragon Ball App Deploy
+name: Despliegue de Dragon Ball App PNPM
 
 on:
   push:
@@ -10,42 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Configurar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
 
-      - name: Install pnpm
-        run: corepack enable && corepack prepare pnpm@latest --activate
+      - name: Instalar dependencias
+        run: pnpm install --frozen-lockfile
 
-      - name: Clean Cache & Install Dependencies
-        run: |
-          echo "🧹 Cleaning cache and installing dependencies..."
-          rm -rf node_modules
-          pnpm store prune
-          pnpm install --frozen-lockfile
+      - name: Construir proyecto
+        run: pnpm run build
 
-      - name: Skip Setup Platform Script in CI
-        run: |
-          echo "⚙️ Checking if running in CI..."
-          if [[ -z "$CI" ]]; then
-            echo "🔧 Running setup-platform.js locally..."
-            node scripts/setup-platform.js
-          else
-            echo "🚀 Skipping setup-platform.js in CI (GitHub Actions)"
-          fi
-
-      - name: Build Project
-        run: |
-          echo "🛠️ Building project..."
-          pnpm add -g typescript
-          VITE_BASE="/dragon-ball-react/" pnpm run build
-
-      - name: Deploy to GitHub Pages
+      - name: Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
