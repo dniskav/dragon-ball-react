@@ -11,7 +11,7 @@ export default {
     { file: 'dist/index.cjs.js', format: 'cjs' },
     { file: 'dist/index.esm.js', format: 'es' },
   ],
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'tslib'],
   plugins: [
     resolve(),
     commonjs(),
