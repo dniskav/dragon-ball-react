@@ -26,6 +26,5 @@
     "esbuild": "^0.25.0",
     "rollup": "^4.34.9",
     "typescript": "^5.0.0"
-  },
-  "packageManager": "pnpm@8.6.0"
+  }
 }
