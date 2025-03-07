@@ -6,10 +6,14 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "yarn workspace abc-styles build"
+    "postinstall": "node scripts/setup-platform.js && yarn workspace abc-styles build",
+    "build": "yarn workspace dragon-ball-app build",
+    "build:styles": "yarn workspace abc-styles build",
+    "install:clean": "rm -rf node_modules && yarn cache clean && yarn install",
+    "start": "yarn workspace dragon-ball-app dev"
   },
   "dependencies": {
-    "@swc/core": "^1.11.5"
+    "@swc/core": "^1.12.25"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
