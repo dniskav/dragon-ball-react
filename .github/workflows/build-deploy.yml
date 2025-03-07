@@ -26,13 +26,14 @@ jobs:
           yarn cache clean
           yarn install --immutable --ignore-platform --ignore-optional
 
-      - name: Run Setup Platform Script (Only Locally)
+      - name: Skip Setup Platform Script in CI
         run: |
-          echo "⚙️ Running setup-platform.js..."
+          echo "⚙️ Checking if running in CI..."
           if [ -z "$CI" ]; then
+            echo "🔧 Running setup-platform.js locally..."
             node scripts/setup-platform.js
           else
-            echo "🚀 Skipping platform-specific dependencies in CI"
+            echo "🚀 Skipping setup-platform.js in CI (GitHub Actions)"
           fi
 
       - name: Build Project
