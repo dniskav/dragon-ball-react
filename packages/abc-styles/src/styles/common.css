@@ -1,0 +1,32 @@
+:root {
+  /* pallete */
+  --primary-color: #ec1d24;
+  --secondary-color: #ffffff;
+  --tertiary-color: #000000;
+  --quaternary-color: #aaaaaa;
+  --fade-color: rgba(236, 29, 36, 0.5);
+
+  --text-color: var(--tertiary-color);
+  --label-text-color: var(--quaternary-color);
+  --focus-color: inset 0px -5px 5px -5px var(--fade-color);
+
+  --card-width: 236px;
+  --card-height: 306px;
+  --label-height: 78px;
+
+  --favorite-color: var(--primary-color);
+  --favorite-hover-color: var(--secondary-color);
+
+  --animation-speed: 0.3s;
+  --line-height-default: 8px;
+
+  /* Colores en HEX */
+  --label-bg: var(--tertiary-color);
+  --label-text-color: var(--secondary-color);
+  --line-color: var(--primary-color);
+  --container-bg-primary: var(--tertiary-color);
+  --container-bg-secondary: var(--secondary-color);
+
+  /* Clip-path para el corte en 45° en la esquina inferior derecha */
+  --clip-card: polygon(0 0, 100% 0, 100% 93%, 93% 100%, 0 100%);
+}

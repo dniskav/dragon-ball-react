@@ -1,0 +1,32 @@
+:root {
+  --text-color: #000000;
+  --border-bottom-color: #000000;
+  --label-text-color: #aaaaaa;
+}
+
+.textContainer {
+  display: flex;
+  border-bottom: 1px solid var(--border-bottom-color);
+  padding: 0;
+  flex-flow: row;
+  align-items: center;
+  flex: 1;
+}
+
+.text {
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 1rem;
+  background-color: transparent;
+  color: var(--text-color);
+  &::placeholder {
+    color: var(--label-text-color);
+  }
+  &:focus {
+    outline: none;
+  }
+}

@@ -1,0 +1,21 @@
+.favoritesBtn {
+  color: var(--favorite-color);
+  transition: color 0.3s ease-in-out;
+  height: 18px;
+  cursor: pointer;
+  width: 48px;
+  display: flex;
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.favoritesBtn:hover {
+  color: var(--favorite-hover-color);
+}
+
+.favoritesBtnText {
+  margin-left: 8px;
+  color: var(--secondary-color);
+}

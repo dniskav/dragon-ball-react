@@ -1,0 +1,36 @@
+# Node modules de la raíz y de todos los subpaquetes
+node_modules/
+packages/*/node_modules/
+
+# Archivos de compilación / build
+dist/
+build/
+packages/*/dist/
+packages/*/build/
+
+# Otros lockfiles, si usas exclusivamente Yarn
+package-lock.json
+pnpm-lock.yaml
+
+# Cachés y logs
+*.log
+.yarn/cache/
+.cache/
+.tmp/
+.turbo/
+
+# Archivos de entorno
+.env
+.env.*
+
+# Archivos de configuración de IDE / SO
+.vscode/
+.idea/
+.DS_Store
+
+# Informes de cobertura (si usas pruebas unitarias)
+coverage/
+packages/*/coverage/
+
+# Evitar que Yarn lance errores al quedar logs extra
+yarn-error.log

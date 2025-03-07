@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "ESNext",
+    "target": "ES6",
+    "declaration": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "types": ["@testing-library/jest-dom"],
+    "strict": true
+  },
+  "include": ["src", "**/*.d.ts", "jest.setup.js"]
+}

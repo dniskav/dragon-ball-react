@@ -1,0 +1,17 @@
+{
+  "name": "dragon-ball-react",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "postinstall": "yarn workspace abc-styles build"
+  },
+  "dependencies": {
+    "@swc/core": "^1.11.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
