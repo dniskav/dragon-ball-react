@@ -2,13 +2,6 @@ const { execSync } = require('child_process')
 const fs = require('fs')
 
 console.log('🛠️ Detectando sistema operativo...')
-
-// Evitar ejecución en CI (GitHub Actions)
-if (process.env.CI) {
-  console.log('🚀 Skipping setup-platform.js in CI (GitHub Actions)')
-  process.exit(0)
-}
-
 const platform = process.platform
 const arch = process.arch
 
@@ -44,26 +37,34 @@ const packageMap = {
 
 // Determina qué paquete instalar
 const packageName = packageMap[platform][arch]
-
-console.log(`🔍 Verificando si ${packageName} ya está instalado...`)
-
-// Revisa si el paquete ya está en node_modules
 const packagePath = `node_modules/${packageName}`
-try {
-  if (fs.existsSync(packagePath)) {
-    console.log(`✅ ${packageName} ya está instalado. Omitiendo instalación.`)
-    process.exit(0)
-  }
-} catch (err) {
-  console.error(`⚠️ Error verificando el paquete: ${err.message}`)
+
+// 🔍 Si ya está instalado, omitir instalación
+if (fs.existsSync(packagePath)) {
+  console.log(`✅ ${packageName} ya está instalado. Omitiendo instalación.`)
+  process.exit(0)
 }
 
-// Si no está instalado, lo agrega
-console.log(`⚡ Instalando ${packageName} para ${platform} (${arch})...`)
-try {
-  execSync(`yarn add -D -W ${packageName}`, { stdio: 'inherit' })
-  console.log(`✅ ${packageName} instalado con éxito.`)
-} catch (err) {
-  console.error(`❌ Error instalando ${packageName}: ${err.message}`)
-  process.exit(1)
+// 🔄 Si está en CI (GitHub Actions), instalar el paquete
+if (process.env.CI) {
+  console.log(`🚀 Ejecutando en CI, instalando ${packageName}...`)
+  try {
+    execSync(`yarn add -D -W ${packageName} --ignore-scripts`, {
+      stdio: 'inherit',
+    })
+    console.log(`✅ ${packageName} instalado con éxito en CI.`)
+  } catch (err) {
+    console.error(`❌ Error instalando ${packageName} en CI: ${err.message}`)
+    process.exit(1)
+  }
+} else {
+  // 🔧 Instalación normal en entornos locales
+  console.log(`⚡ Instalando ${packageName} para ${platform} (${arch})...`)
+  try {
+    execSync(`yarn add -D -W ${packageName}`, { stdio: 'inherit' })
+    console.log(`✅ ${packageName} instalado con éxito.`)
+  } catch (err) {
+    console.error(`❌ Error instalando ${packageName}: ${err.message}`)
+    process.exit(1)
+  }
 }
