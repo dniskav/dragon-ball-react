@@ -13,9 +13,10 @@
     "start": "yarn workspace dragon-ball-app dev"
   },
   "dependencies": {
-    "@swc/core": "^1.12.25"
+    "@swc/core": "^1.6.12"
   },
   "devDependencies": {
+    "@rollup/rollup-darwin-arm64": "^4.34.9",
     "typescript": "^5.0.0"
   }
 }
