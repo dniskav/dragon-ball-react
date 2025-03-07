@@ -21,13 +21,19 @@ jobs:
 
       - name: Clean Cache & Install Dependencies
         run: |
+          echo "🧹 Cleaning cache and installing dependencies..."
           rm -rf node_modules
           yarn cache clean
           yarn install --immutable --ignore-platform --ignore-optional
 
+      - name: Run Setup Platform Script
+        run: |
+          echo "⚙️ Running setup-platform.js..."
+          node scripts/setup-platform.js
+
       - name: Build Project
         run: |
-          echo "Building project..."
+          echo "🛠️ Building project..."
           yarn global add typescript
           VITE_BASE="/dragon-ball-react/" yarn build
 

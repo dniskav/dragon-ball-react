@@ -54,7 +54,7 @@ try {
 // Si no está instalado, lo agrega
 console.log(`⚡ Instalando ${packageName} para ${platform} (${arch})...`)
 try {
-  execSync(`yarn add -D ${packageName}`, { stdio: 'inherit' })
+  execSync(`yarn add -D -W ${packageName}`, { stdio: 'inherit' })
   console.log(`✅ ${packageName} instalado con éxito.`)
 } catch (err) {
   console.error(`❌ Error instalando ${packageName}: ${err.message}`)
