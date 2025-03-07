@@ -1,4 +1,4 @@
-name: Dragon Ball App Deploy pnmp
+name: Dragon Ball App Deploy
 
 on:
   push:
@@ -23,19 +23,16 @@ jobs:
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
-          pnpm --version
 
       - name: Clean Cache & Install Dependencies
         run: |
           echo "🧹 Cleaning cache and installing dependencies..."
           rm -rf node_modules
-          pnpm store prune
           pnpm install --frozen-lockfile
 
       - name: Build Project
         run: |
           echo "🛠️ Building project..."
-          pnpm add -g typescript
           VITE_BASE="/dragon-ball-react/" pnpm run build
 
       - name: Deploy to GitHub Pages
