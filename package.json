@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "pnpm --filter dragon-ball-app build",
+    "build": "pnpm --filter abc-styles build && pnpm --filter dragon-ball-app build",
     "build:styles": "pnpm --filter abc-styles build",
     "install:clean": "rm -rf node_modules && pnpm store prune && pnpm install",
     "start": "pnpm --filter dragon-ball-app dev"

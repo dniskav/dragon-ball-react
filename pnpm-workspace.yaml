@@ -1,2 +1,3 @@
 packages:
-  - 'packages/*'
+  - packages/abc-styles
+  - packages/dragon-ball-app
