@@ -29,7 +29,7 @@ jobs:
       - name: Skip Setup Platform Script in CI
         run: |
           echo "⚙️ Checking if running in CI..."
-          if [ -z "$CI" ]; then
+          if [[ -z "$CI" ]]; then
             echo "🔧 Running setup-platform.js locally..."
             node scripts/setup-platform.js
           else
