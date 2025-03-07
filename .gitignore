@@ -10,7 +10,6 @@ packages/*/build/
 
 # Otros lockfiles, si usas exclusivamente Yarn
 package-lock.json
-pnpm-lock.yaml
 
 # Cachés y logs
 *.log
