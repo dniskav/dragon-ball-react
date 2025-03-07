@@ -1,4 +1,4 @@
-name: Dragon ball App deploy
+name: Dragon Ball App Deploy
 
 on:
   push:
@@ -17,20 +17,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'yarn'
 
-      - name: Install Dependencies
-        run: yarn install --immutable --ignore-optional
+      - name: Clean Cache & Install Dependencies
+        run: |
+          rm -rf node_modules
+          yarn cache clean
+          yarn install --immutable --ignore-platform --ignore-optional
 
       - name: Build Project
         run: |
           echo "Building project..."
-          npm install -g typescript  # Asegurar que tsc esté disponible
-          VITE_BASE="/dragon-ball-react/" npm run build
+          yarn global add typescript
+          VITE_BASE="/dragon-ball-react/" yarn build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # Asegura que el despliegue vaya a `gh-pages`
-          folder: dist # Carpeta donde se generó el build
-          clean: true # Borra archivos viejos antes de subir nuevos
-          token: ${{ secrets.GITHUB_TOKEN }} # Usa el token de GitHub
+          branch: gh-pages
+          folder: dist
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }}
