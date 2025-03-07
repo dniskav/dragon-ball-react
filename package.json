@@ -2,21 +2,30 @@
   "name": "dragon-ball-react",
   "private": true,
   "version": "1.0.0",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "postinstall": "node scripts/setup-platform.js && yarn workspace abc-styles build",
-    "build": "yarn workspace dragon-ball-app build",
-    "build:styles": "yarn workspace abc-styles build",
-    "install:clean": "rm -rf node_modules && yarn cache clean && yarn install",
-    "start": "yarn workspace dragon-ball-app dev"
+    "build": "pnpm --filter dragon-ball-app build",
+    "build:styles": "pnpm --filter abc-styles build",
+    "install:clean": "rm -rf node_modules && pnpm store prune && pnpm install",
+    "start": "pnpm --filter dragon-ball-app dev"
   },
   "dependencies": {
-    "@swc/core": "^1.6.12"
+    "@swc/core": "^1.6.12",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.2.0",
+    "postcss": "^8.5.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@esbuild/darwin-arm64": "^0.25.0",
+    "@esbuild/darwin-x64": "^0.25.0",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/rollup-darwin-arm64": "^4.34.9",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "esbuild": "^0.25.0",
+    "rollup": "^4.34.9",
     "typescript": "^5.0.0"
-  }
+  },
+  "packageManager": "pnpm@8.6.0"
 }

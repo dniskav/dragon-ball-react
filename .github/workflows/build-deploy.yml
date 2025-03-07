@@ -17,14 +17,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
 
       - name: Clean Cache & Install Dependencies
         run: |
           echo "🧹 Cleaning cache and installing dependencies..."
           rm -rf node_modules
-          yarn cache clean
-          yarn install --immutable --ignore-platform --ignore-optional
+          pnpm store prune
+          pnpm install --frozen-lockfile
 
       - name: Skip Setup Platform Script in CI
         run: |
@@ -39,8 +42,8 @@ jobs:
       - name: Build Project
         run: |
           echo "🛠️ Building project..."
-          yarn global add typescript
-          VITE_BASE="/dragon-ball-react/" yarn build
+          pnpm add -g typescript
+          VITE_BASE="/dragon-ball-react/" pnpm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
