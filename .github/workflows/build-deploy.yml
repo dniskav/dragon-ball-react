@@ -1,0 +1,45 @@
+name: Deploy Dragon Ball App
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: |
+          echo "Installing dependencies..."
+          yarn install
+
+      - name: Install Dependencies for Dragon Ball App
+        run: |
+          echo "Installing dependencies for dragon-ball-app..."
+          cd packages/dragon-ball-app
+          yarn install
+
+      - name: Build Application
+        run: |
+          echo "Building application..."
+          cd packages/dragon-ball-app
+          yarn build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # Asegura que el despliegue vaya a `gh-pages`
+          folder: packages/dragon-ball-app/dist # Carpeta donde se generó el build
+          clean: true # Borra archivos viejos antes de subir nuevos
+          token: ${{ secrets.GITHUB_TOKEN }} # Usa el token de GitHub
