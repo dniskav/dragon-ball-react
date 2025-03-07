@@ -1,4 +1,4 @@
-name: Dragon Ball App Deploy
+name: Dragon Ball App Deploy pnmp
 
 on:
   push:
