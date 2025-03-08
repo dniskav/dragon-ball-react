@@ -34,13 +34,13 @@ El proyecto sigue una **arquitectura hexagonal**, lo que significa que el códig
 Para instalar las dependencias del proyecto, asegúrate de estar en la raíz del monorepo y ejecuta:
 
 ```sh
-yarn install
+pnpm install
 ```
 
 Si estás en un paquete específico como **dragon-ball-app**, usa:
 
 ```sh
-yarn workspace dragon-ball-app install
+pnpm install --filter dragon-ball-app
 ```
 
 ## 🛠️ Modo Desarrollo
@@ -48,7 +48,7 @@ yarn workspace dragon-ball-app install
 Para ejecutar la aplicación en modo desarrollo con **Vite**, usa:
 
 ```sh
-yarn dev
+pnpm dev --filter dragon-ball-app
 ```
 
 ## 📦 Modo Producción
@@ -56,12 +56,27 @@ yarn dev
 Para construir y servir la aplicación en modo producción, usa:
 
 ```sh
-yarn build && yarn preview
+pnpm build --filter dragon-ball-app
 ```
+
+Luego, si deseas previsualizar la aplicación en producción localmente:
+
+```sh
+pnpm preview --filter dragon-ball-app
+```
+
+## 🚀 Despliegue en GitHub Pages
+
+El proyecto se despliega automáticamente a **GitHub Pages** mediante GitHub Actions. Si necesitas desplegar manualmente, ejecuta:
+
+```sh
+git push origin master
+```
+
+Asegúrate de que la configuración de GitHub Pages esté apuntando a la rama `gh-pages`.
 
 ## 📝 Notas
 
 - **abc-styles** es un paquete independiente que contiene los estilos reutilizables.
 - Los módulos están organizados siguiendo principios de arquitectura hexagonal.
-
-Si tienes dudas o quieres contribuir, siéntete libre de hacerlo. ¡Feliz desarrollo! 🚀
+- Se recomienda usar **pnpm** como gestor de paquetes para mantener compatibilidad con el monorepo.
