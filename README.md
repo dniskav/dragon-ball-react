@@ -48,7 +48,7 @@ pnpm install --filter dragon-ball-app
 Para ejecutar la aplicación en modo desarrollo con **Vite**, usa:
 
 ```sh
-pnpm dev --filter dragon-ball-app
+pnpm dev
 ```
 
 ## 📦 Modo Producción
@@ -56,27 +56,84 @@ pnpm dev --filter dragon-ball-app
 Para construir y servir la aplicación en modo producción, usa:
 
 ```sh
-pnpm build --filter dragon-ball-app
+pnpm build && pnpm preview
 ```
 
-Luego, si deseas previsualizar la aplicación en producción localmente:
+## 🖥️ 💡 **Guía de Instalación en Windows**
+
+Si estás utilizando **Windows**, sigue estos pasos para evitar problemas de compatibilidad:
+
+### **1️⃣ Requisitos Previos**
+
+Antes de ejecutar el proyecto, instala lo siguiente:
+
+- **Git for Windows** → [Descargar aquí](https://gitforwindows.org/)
+- **Node.js (versión 20 o superior)** → [Descargar aquí](https://nodejs.org/)
+- **pnpm (Gestor de paquetes)** → Instalar con:
+  ```sh
+  corepack enable
+  corepack prepare pnpm@latest --activate
+  ```
+- **Opcional (si usas PowerShell)**: Instalar `windows-build-tools`
+  ```sh
+  npm install --global windows-build-tools
+  ```
+
+### **2️⃣ Clonar el Repositorio**
 
 ```sh
-pnpm preview --filter dragon-ball-app
+git clone https://github.com/dniskav/dragon-ball-react.git
+cd dragon-ball-react
 ```
 
-## 🚀 Despliegue en GitHub Pages
-
-El proyecto se despliega automáticamente a **GitHub Pages** mediante GitHub Actions. Si necesitas desplegar manualmente, ejecuta:
+### **3️⃣ Instalar las Dependencias**
 
 ```sh
-git push origin master
+pnpm install
 ```
 
-Asegúrate de que la configuración de GitHub Pages esté apuntando a la rama `gh-pages`.
+⚠️ **Si aparece un error sobre "Unsupported platform"**, elimina `node_modules` y reinstala:
 
-## 📝 Notas
+```sh
+rm -rf node_modules pnpm-lock.yaml
+pnpm install --force
+```
 
-- **abc-styles** es un paquete independiente que contiene los estilos reutilizables.
-- Los módulos están organizados siguiendo principios de arquitectura hexagonal.
-- Se recomienda usar **pnpm** como gestor de paquetes para mantener compatibilidad con el monorepo.
+### **4️⃣ Ejecutar el Proyecto**
+
+```sh
+pnpm dev
+```
+
+### **🐛 Solución de Problemas en Windows**
+
+**📌 `pnpm` no se encuentra**
+Si `pnpm` no está instalado, ejecuta:
+
+```sh
+npm install -g pnpm
+```
+
+**📌 Error `Unsupported platform for esbuild`**
+Si aparece un error de **esbuild**, instala la versión correcta:
+
+```sh
+pnpm add -D esbuild@latest
+```
+
+**📌 Error `rsync not found` (al hacer deploy)**
+Si en el **deploy a GitHub Pages** aparece:
+
+```sh
+Error: Unable to locate executable file: rsync
+```
+
+Debes instalar **rsync** en Windows con Chocolatey:
+
+```sh
+choco install rsync -y
+```
+
+O cambiar a **Ubuntu WSL** para evitar problemas.
+
+---
