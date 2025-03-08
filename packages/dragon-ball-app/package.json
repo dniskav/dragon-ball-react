@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "start": "vite preview",
-    "start:prod": "yarn build && vite preview",
+    "start:prod": "vite build && vite preview",
     "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch",
